@@ -1,14 +1,654 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>HardCoin Explorer</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Animate On Scroll -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    <!-- ChartJS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
 </head>
+
 <body>
 
-    <h1>🚀 HardCoin Explorer</h1>
-    <h2>Server is Working!</h2>
+    <!-- Animated Background -->
+
+    <div class="background-circle circle1"></div>
+    <div class="background-circle circle2"></div>
+    <div class="background-circle circle3"></div>
+
+    <!-- Navbar -->
+
+    <nav class="navbar navbar-expand-lg navbar-dark py-3">
+
+        <div class="container">
+
+            <a class="navbar-brand fw-bold fs-3" href="#">
+
+                🪙 HardCoin Explorer
+
+            </a>
+
+            <button class="navbar-toggler"
+                data-bs-toggle="collapse"
+                data-bs-target="#menu">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+            <div class="collapse navbar-collapse"
+                id="menu">
+
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item">
+
+                        <a class="nav-link active"
+                            href="#dashboard">
+
+                            Dashboard
+
+                        </a>
+
+                    </li>
+
+                    <li class="nav-item">
+
+                        <a class="nav-link"
+                            href="#wallets">
+
+                            Wallets
+
+                        </a>
+
+                    </li>
+
+                    <li class="nav-item">
+
+                        <a class="nav-link"
+                            href="#transaction">
+
+                            Transactions
+
+                        </a>
+
+                    </li>
+
+                    <li class="nav-item">
+
+                        <a class="nav-link"
+                            href="#mine">
+
+                            Mining
+
+                        </a>
+
+                    </li>
+
+                    <li class="nav-item">
+
+                        <a class="nav-link"
+                            href="#explorer">
+
+                            Explorer
+
+                        </a>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+    <!-- Hero Section -->
+
+    <section class="hero">
+
+        <div class="container">
+
+            <div class="row align-items-center">
+
+                <div class="col-lg-7"
+                    data-aos="fade-right">
+
+                    <h1>
+
+                        Cryptocurrency <br>
+
+                        Blockchain Simulator
+
+                    </h1>
+
+                    <p>
+
+                        HardCoin Explorer is a complete blockchain
+                        simulation demonstrating SHA-256 hashing,
+                        Proof of Work, Mining, Wallets,
+                        Transactions and Blockchain Validation.
+
+                    </p>
+
+                    <div class="mt-4">
+
+                        <button
+                            class="btn btn-primary btn-lg me-3">
+
+                            Launch Dashboard
+
+                        </button>
+
+                        <button
+                            class="btn btn-outline-light btn-lg">
+
+                            GitHub
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-5 text-center"
+                    data-aos="zoom-in">
+
+                    <img
+                        src="https://cdn-icons-png.flaticon.com/512/6001/6001366.png"
+                        class="hero-image">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Dashboard -->
+
+    <section
+        id="dashboard"
+        class="container my-5">
+
+        <div class="row g-4">
+
+            <div class="col-md-3">
+
+                <div class="dashboard-card">
+
+                    <i class="bi bi-box"></i>
+
+                    <h5>Total Blocks</h5>
+
+                    <h2 id="blockCount">
+
+                        0
+
+                    </h2>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <div class="dashboard-card">
+
+                    <i class="bi bi-wallet2"></i>
+
+                    <h5>Wallets</h5>
+
+                    <h2 id="walletCount">
+
+                        0
+
+                    </h2>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <div class="dashboard-card">
+
+                    <i class="bi bi-arrow-left-right"></i>
+
+                    <h5>Pending Transactions</h5>
+
+                    <h2 id="pendingCount">
+
+                        0
+
+                    </h2>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <div class="dashboard-card">
+
+                    <i class="bi bi-cpu"></i>
+
+                    <h5>Difficulty</h5>
+
+                    <h2>
+
+                        2
+
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Wallet Section -->
+
+    <section
+        id="wallets"
+        class="container my-5">
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+
+            <h2 class="section-title">
+
+                👛 Wallet Management
+
+            </h2>
+
+            <button
+                class="btn btn-success"
+                data-bs-toggle="modal"
+                data-bs-target="#walletModal">
+
+                <i class="bi bi-plus-circle"></i>
+
+                Create Wallet
+
+            </button>
+
+        </div>
+
+        <div
+            class="row"
+            id="walletContainer">
+
+        </div>
+
+    </section>
+
+    <!-- Transaction Section -->
+
+    <section
+        id="transaction"
+        class="container my-5">
+
+        <div class="glass-card">
+
+            <h2>
+
+                💸 Create Transaction
+
+            </h2>
+
+            <div class="row mt-4">
+
+                <div class="col-md-4">
+
+                    <label>
+
+                        Sender
+
+                    </label>
+
+                    <select
+                        id="fromWallet"
+                        class="form-select">
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <label>
+
+                        Receiver
+
+                    </label>
+
+                    <select
+                        id="toWallet"
+                        class="form-select">
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <label>
+
+                        Amount
+
+                    </label>
+
+                    <input
+                        type="number"
+                        id="amount"
+                        class="form-control"
+                        placeholder="Enter Amount">
+
+                </div>
+
+            </div>
+
+            <div class="text-center mt-4">
+
+                <button
+                    id="sendBtn"
+                    class="btn btn-primary btn-lg">
+
+                    Send Coins
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+        <!-- ========================================= -->
+    <!-- Mining Section -->
+    <!-- ========================================= -->
+
+    <section id="mine" class="container my-5">
+
+        <div class="glass-card text-center p-5">
+
+            <h2 class="section-title mb-3">
+
+                ⛏ Mine New Block
+
+            </h2>
+
+            <p class="text-light">
+
+                Mine all pending transactions and earn
+                <strong>100 HardCoins</strong>
+
+            </p>
+
+            <div class="progress my-4" style="height:28px;">
+
+                <div id="mineProgress"
+                    class="progress-bar progress-bar-striped progress-bar-animated"
+                    role="progressbar"
+                    style="width:0%">
+
+                    0%
+
+                </div>
+
+            </div>
+
+            <button
+                class="btn btn-warning btn-lg"
+                id="mineBtn">
+
+                ⛏ Start Mining
+
+            </button>
+
+            <div
+                id="miningStatus"
+                class="mt-4 text-info fw-bold">
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ========================================= -->
+    <!-- Blockchain Explorer -->
+    <!-- ========================================= -->
+
+    <section id="explorer" class="container my-5">
+
+        <h2 class="section-title mb-4">
+
+            📦 Blockchain Explorer
+
+        </h2>
+
+        <div
+            id="blockchainExplorer"
+            class="row gy-4">
+
+        </div>
+
+    </section>
+
+    <!-- ========================================= -->
+    <!-- Wallet Balance Chart -->
+    <!-- ========================================= -->
+
+    <section class="container my-5">
+
+        <div class="glass-card p-4">
+
+            <h2 class="section-title mb-4">
+
+                📈 Wallet Balance Chart
+
+            </h2>
+
+            <canvas
+                id="walletChart"
+                height="120">
+
+            </canvas>
+
+        </div>
+
+    </section>
+
+    <!-- ========================================= -->
+    <!-- Blockchain Status -->
+    <!-- ========================================= -->
+
+    <section class="container my-5">
+
+        <div class="row">
+
+            <div class="col-lg-6 mb-4">
+
+                <div class="glass-card p-4 text-center">
+
+                    <i class="bi bi-shield-check display-4 text-success"></i>
+
+                    <h3 class="mt-3">
+
+                        Blockchain Status
+
+                    </h3>
+
+                    <h4
+                        id="chainStatus"
+                        class="text-success">
+
+                        VALID
+
+                    </h4>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-6 mb-4">
+
+                <div class="glass-card p-4 text-center">
+
+                    <i class="bi bi-gem display-4 text-warning"></i>
+
+                    <h3 class="mt-3">
+
+                        Mining Reward
+
+                    </h3>
+
+                    <h4>
+
+                        100 HC
+
+                    </h4>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ========================================= -->
+    <!-- Create Wallet Modal -->
+    <!-- ========================================= -->
+
+    <div
+        class="modal fade"
+        id="walletModal"
+        tabindex="-1">
+
+        <div class="modal-dialog">
+
+            <div class="modal-content bg-dark text-white">
+
+                <div class="modal-header">
+
+                    <h5 class="modal-title">
+
+                        Create Wallet
+
+                    </h5>
+
+                    <button
+                        class="btn-close btn-close-white"
+                        data-bs-dismiss="modal">
+
+                    </button>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <input
+                        id="walletName"
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter Wallet Name">
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button
+                        id="createWalletBtn"
+                        class="btn btn-success">
+
+                        Create Wallet
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ========================================= -->
+    <!-- Footer -->
+    <!-- ========================================= -->
+
+    <footer class="mt-5 py-4 text-center">
+
+        <p>
+
+            © 2026 HardCoin Explorer
+
+        </p>
+
+        <small>
+
+            Developed using Node.js • Express • Blockchain • SHA-256 • Bootstrap
+
+        </small>
+
+    </footer>
+
+    <!-- ========================================= -->
+    <!-- Bootstrap JS -->
+    <!-- ========================================= -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- ========================================= -->
+    <!-- AOS -->
+    <!-- ========================================= -->
+
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+    <script>
+
+        AOS.init({
+
+            duration: 1000,
+
+            once: true
+
+        });
+
+    </script>
+
+    <!-- ========================================= -->
+    <!-- Custom JavaScript -->
+    <!-- ========================================= -->
+
+    <script src="js/script.js"></script>
 
 </body>
+
 </html>
