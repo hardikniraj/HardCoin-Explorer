@@ -4,10 +4,12 @@
         Main Server
 ===========================================
 */
-
+console.log("🔥 THIS IS THE APP.JS BEING EXECUTED");
 const express = require("express");
 const path = require("path");
 
+// Import API Routes
+const apiRoutes = require("./routes/api");
 const app = express();
 
 // ===========================================
@@ -19,6 +21,12 @@ app.use(express.urlencoded({ extended: true }));
 
 // Serve Static Files
 app.use(express.static(path.join(__dirname, "public")));
+
+// ===========================================
+// API Routes
+// ===========================================
+
+app.use("/api", apiRoutes);
 
 // ===========================================
 // Routes
@@ -51,12 +59,18 @@ const server = app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
 });
 
-// Keep Node Process Alive (Temporary for Debugging)
+// ===========================================
+// Debug (Temporary)
+// ===========================================
+
 setInterval(() => {
     console.log("✅ Server is alive:", new Date().toLocaleTimeString());
 }, 5000);
 
-// Handle unexpected errors
+// ===========================================
+// Error Handling
+// ===========================================
+
 process.on("uncaughtException", (err) => {
     console.error("Uncaught Exception:", err);
 });
@@ -65,7 +79,10 @@ process.on("unhandledRejection", (err) => {
     console.error("Unhandled Rejection:", err);
 });
 
-// Graceful shutdown
+// ===========================================
+// Graceful Shutdown
+// ===========================================
+
 process.on("SIGINT", () => {
     console.log("\nStopping HardCoin Explorer...");
     server.close(() => {
