@@ -4,10 +4,10 @@
         REST API
 =====================================================
 */
-console.log("🚀 LOADED routes/api.js");
+
 const express = require("express");
 const router = express.Router();
-console.log("✅ API routes loaded");
+
 const Blockchain = require("../blockchain/blockchain");
 const Wallet = require("../blockchain/wallet");
 const Transaction = require("../blockchain/transaction");
@@ -23,11 +23,9 @@ const hardCoin = new Blockchain();
 // ============================================
 
 const wallets = [
-
     new Wallet("Hardik"),
     new Wallet("Rahul"),
     new Wallet("Aman")
-
 ];
 
 /*
@@ -39,26 +37,19 @@ const wallets = [
 router.get("/dashboard", (req, res) => {
 
     res.json({
-
         totalBlocks: hardCoin.chain.length,
-
         totalWallets: wallets.length,
-
         pendingTransactions: hardCoin.pendingTransactions.length,
-
         difficulty: hardCoin.difficulty,
-
         miningReward: hardCoin.miningReward,
-
         blockchainValid: hardCoin.isChainValid()
-
     });
 
 });
 
 /*
 =====================================================
-                GET BLOCKS
+                GET ALL BLOCKS
 =====================================================
 */
 
@@ -70,7 +61,7 @@ router.get("/blocks", (req, res) => {
 
 /*
 =====================================================
-            GET PENDING TRANSACTIONS
+        GET PENDING TRANSACTIONS
 =====================================================
 */
 
@@ -79,7 +70,38 @@ router.get("/pending", (req, res) => {
     res.json(hardCoin.pendingTransactions);
 
 });
-router.get("/test", (req, res) => {
-    res.send("API is working!");
+
+/*
+=====================================================
+            GET ALL WALLETS
+=====================================================
+*/
+
+router.get("/wallets", (req, res) => {
+
+    const walletData = wallets.map(wallet => ({
+        id: wallet.id,
+        name: wallet.name,
+        address: wallet.address,
+        balance: wallet.balance,
+        status: wallet.status,
+        createdAt: wallet.createdAt
+    }));
+
+    res.json(walletData);
+
 });
+
+/*
+=====================================================
+                API TEST
+=====================================================
+*/
+
+router.get("/test", (req, res) => {
+
+    res.send("✅ HardCoin API is Working");
+
+});
+
 module.exports = router;
