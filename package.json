@@ -1,0 +1,26 @@
+{
+  "name": "hardcoin-explorer",
+  "version": "1.0.0",
+  "description": "A Blockchain-based Cryptocurrency Simulation Platform",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "keywords": [
+    "blockchain",
+    "cryptocurrency",
+    "nodejs",
+    "express"
+  ],
+  "author": "Hardik Niraj",
+  "license": "MIT",
+  "type": "commonjs",
+  "dependencies": {
+    "crypto-js": "^4.2.0",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
