@@ -17,7 +17,7 @@ const blockCount = document.getElementById("blockCount");
 const walletCount = document.getElementById("walletCount");
 const pendingCount = document.getElementById("pendingCount");
 const chainStatus = document.getElementById("chainStatus");
-
+const difficultyCount = document.getElementById("difficultyCount");
 /*
 =========================================================
                 Wallet Elements
@@ -63,6 +63,10 @@ const miningStatus = document.getElementById("miningStatus");
 */
 
 const explorer = document.getElementById("blockchainExplorer");
+const blockSearch = document.getElementById("blockSearch");
+
+const searchBtn = document.getElementById("searchBtn");
+const activityFeed = document.getElementById("activityFeed");
 
 /*
 =========================================================
@@ -113,7 +117,31 @@ function toast(message, color = "#198754") {
     }, 2500);
 
 }
+function animateValue(element, value){
 
+    let start = Number(element.innerText) || 0;
+
+    const duration = 500;
+
+    const startTime = performance.now();
+
+    function update(currentTime){
+
+        const progress = Math.min((currentTime-startTime)/duration,1);
+
+        element.innerText = Math.floor(start+(value-start)*progress);
+
+        if(progress<1){
+
+            requestAnimationFrame(update);
+
+        }
+
+    }
+
+    requestAnimationFrame(update);
+
+}
 /*
 =========================================================
                 Dashboard Loader
@@ -126,14 +154,24 @@ async function loadDashboard() {
 
         const response = await fetch(API + "/dashboard");
 
-        const data = await response.json();
+       const data = await response.json();
 
-        blockCount.innerText = data.totalBlocks;
+difficultyCount.innerText = data.difficulty;
 
-        walletCount.innerText = data.totalWallets;
+const mineDifficulty = document.getElementById("mineDifficulty");
 
-        pendingCount.innerText = data.pendingTransactions;
+if (mineDifficulty) {
 
+    mineDifficulty.innerText = data.difficulty;
+
+}
+       animateValue(blockCount,data.totalBlocks);
+
+animateValue(walletCount,data.totalWallets);
+
+animateValue(pendingCount,data.pendingTransactions);
+
+animateValue(difficultyCount,data.difficulty);
         if (data.blockchainValid) {
 
             chainStatus.innerText = "VALID";
@@ -194,59 +232,92 @@ async function loadWallets() {
 
             walletContainer.innerHTML += `
 
-            <div class="col-lg-4 mb-4">
+           <div class="col-lg-4 col-md-6 mb-4">
 
-                <div class="glass-card p-4 h-100">
+    <div class="wallet-card h-100">
 
-                    <h4>👤 ${wallet.name}</h4>
+        <div class="d-flex justify-content-between align-items-start">
 
-                    <hr>
+            <div>
 
-                    <small class="text-info">
+                <h4 class="mb-1">
+                    👤 ${wallet.name}
+                </h4>
 
-                        ${wallet.address}
-
-                    </small>
-
-                    <h3 class="mt-3">
-
-                        ${wallet.balance} HC
-
-                    </h3>
-
-                    <span class="badge bg-success">
-
-                        ${wallet.status}
-
-                    </span>
-
-                    <div class="mt-3">
-
-                        <button
-
-                            class="btn btn-sm btn-warning me-2"
-
-                            onclick="renameWallet('${wallet.id}')">
-
-                            Rename
-
-                        </button>
-
-                        <button
-
-                            class="btn btn-sm btn-danger"
-
-                            onclick="deleteWallet('${wallet.id}')">
-
-                            Delete
-
-                        </button>
-
-                    </div>
-
-                </div>
+                <span class="badge bg-success rounded-pill">
+                    ${wallet.status}
+                </span>
 
             </div>
+
+        </div>
+
+        <hr>
+
+        <small class="text-secondary d-block mb-2">
+            💰 Balance
+        </small>
+
+        <div class="wallet-balance mb-3">
+            ${wallet.balance} HC
+        </div>
+
+        <small class="text-secondary d-block mb-2">
+            📍 Wallet Address
+        </small>
+
+        <div class="wallet-address mb-3">
+
+            ${wallet.address}
+
+        </div>
+
+        <small class="text-secondary d-block mb-2">
+            📅 Created
+        </small>
+
+        <div class="mb-4">
+
+            ${new Date(wallet.createdAt).toLocaleDateString()}
+
+        </div>
+
+        <div class="d-grid gap-2">
+
+            <button
+                class="btn btn-primary btn-sm"
+                onclick="navigator.clipboard.writeText('${wallet.address}');
+                toast('📋 Address Copied');">
+
+                📋 Copy Address
+
+            </button>
+
+            <div class="d-flex gap-2">
+
+                <button
+                    class="btn btn-warning btn-sm w-50"
+                    onclick="renameWallet('${wallet.id}')">
+
+                    ✏ Rename
+
+                </button>
+
+                <button
+                    class="btn btn-danger btn-sm w-50"
+                    onclick="deleteWallet('${wallet.id}')">
+
+                    🗑 Delete
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 
             `;
 
@@ -328,7 +399,11 @@ createWalletBtn.addEventListener("click", async () => {
         if (data.success) {
 
             toast("Wallet Created Successfully");
-
+            addActivity(
+    "👤",
+    "Wallet Created",
+    `${name} wallet has been created.`
+);
             walletName.value = "";
 
             const modal = bootstrap.Modal.getInstance(
@@ -354,7 +429,24 @@ createWalletBtn.addEventListener("click", async () => {
             toast(data.message, "#dc3545");
 
         }
+        addActivity(
 
+    "✏",
+
+    "Wallet Renamed",
+
+    `${name}`
+
+);
+addActivity(
+
+    "🗑",
+
+    "Wallet Deleted",
+
+    data.wallet.name
+
+);
     }
 
     catch (error) {
@@ -603,14 +695,37 @@ sendBtn.addEventListener("click", async () => {
 
         );
 
-        const data = await response.json();
+       const data = await response.json();
 
-        toast(data.message);
+if (!data.success) {
+    toast(data.message, "#dc3545");
+    return;
+}
 
-        amount.value = "";
+toast(
+    "⏳ Transaction added to the pending pool.\nMine a block to confirm it.",
+    "#0dcaf0"
+);
+const fromName =
+    fromWallet.options[fromWallet.selectedIndex].text;
 
-        await loadDashboard();
+const toName =
+    toWallet.options[toWallet.selectedIndex].text;
 
+addActivity(
+
+    "💸",
+
+    "Transaction Created",
+
+    `${fromName} ➜ ${toName} : ${coinAmount} HC`
+
+);
+amount.value = "";
+
+await loadDashboard();
+await loadWallets();
+await loadExplorer();
     }
 
     catch (error) {
@@ -689,14 +804,21 @@ mineBtn.addEventListener("click", async () => {
 
         miningStatus.innerHTML = "✅ " + data.message;
 
-        toast("Mining Completed!");
+        toast(
+    `⛏ Block mined successfully!
+Reward +${data.reward} HC`,
+    "#198754"
+);
+addActivity(
 
-        await loadDashboard();
+    "⛏",
 
-        await loadWallets();
+    "Block Mined",
 
-        await loadExplorer();
+    `Reward +${data.reward} HC`
 
+);
+await refreshAll();
     }
 
     catch (error) {
@@ -731,75 +853,141 @@ async function loadExplorer() {
 
         explorer.innerHTML = "";
 
-        blocks.forEach(block => {
+        blocks.reverse().forEach(block => {
 
             explorer.innerHTML += `
 
-            <div class="col-lg-6">
+            <div class="col-lg-6 mb-4">
 
-                <div class="glass-card p-4 h-100">
+                <div class="explorer-card h-100">
 
-                    <h3>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
 
-                        ⛓ Block #${block.index}
+                        <h4>
 
-                    </h3>
+                            🧱 Block #${block.index}
+
+                        </h4>
+
+                        <span class="badge bg-success">
+
+                            🟢 VALID
+
+                        </span>
+
+                    </div>
 
                     <hr>
 
-                    <p>
+                    <div class="row">
 
-                        <strong>Hash</strong>
+                        <div class="col-6">
 
-                    </p>
+                            <small class="text-secondary">
 
-                    <small class="text-info">
+                                📦 Transactions
+
+                            </small>
+
+                            <h5>
+
+                                ${block.transactions.length}
+
+                            </h5>
+
+                        </div>
+
+                        <div class="col-6">
+
+                            <small class="text-secondary">
+
+                                ⚙ Difficulty
+
+                            </small>
+
+                            <h5>
+
+                                ${block.difficulty}
+
+                            </h5>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row mt-3">
+
+                        <div class="col-6">
+
+                            <small class="text-secondary">
+
+                                🎲 Nonce
+
+                            </small>
+
+                            <h6>
+
+                                ${block.nonce}
+
+                            </h6>
+
+                        </div>
+
+                        <div class="col-6">
+
+                            <small class="text-secondary">
+
+                                ⏱ Mining Time
+
+                            </small>
+
+                            <h6>
+
+                                ${block.miningTime || 0} sec
+
+                            </h6>
+
+                        </div>
+
+                    </div>
+
+                    <hr>
+
+                    <small class="text-secondary">
+
+                        📅 Timestamp
+
+                    </small>
+
+                    <div class="mb-3">
+
+                        ${new Date(block.timestamp).toLocaleString()}
+
+                    </div>
+
+                    <small class="text-secondary">
+
+                        🔐 Hash
+
+                    </small>
+
+                    <div class="hash-box">
 
                         ${block.hash}
 
+                    </div>
+
+                    <small class="text-secondary mt-3 d-block">
+
+                        🔗 Previous Hash
+
                     </small>
 
-                    <hr>
-
-                    <p>
-
-                        <strong>Previous Hash</strong>
-
-                    </p>
-
-                    <small>
+                    <div class="hash-box">
 
                         ${block.previousHash}
 
-                    </small>
-
-                    <hr>
-
-                    <p>
-
-                        <strong>Transactions</strong>
-
-                    </p>
-
-                    <h5>
-
-                        ${block.transactions.length}
-
-                    </h5>
-
-                    <hr>
-
-                    <p>
-
-                        <strong>Nonce</strong>
-
-                    </p>
-
-                    <h5>
-
-                        ${block.nonce}
-
-                    </h5>
+                    </div>
 
                 </div>
 
@@ -814,6 +1002,8 @@ async function loadExplorer() {
     catch (error) {
 
         console.error(error);
+
+        toast("Unable to load explorer", "#dc3545");
 
     }
 
@@ -834,9 +1024,58 @@ async function refreshAll() {
     await loadExplorer();
 
 }
+setInterval(async () => {
+    await loadDashboard();
+}, 10000);
+/*
+=========================================================
+                Activity Feed
+=========================================================
+*/
 
-setInterval(refreshAll, 10000);
+function addActivity(icon, title, message){
 
+    if(!activityFeed) return;
+
+    const now = new Date();
+
+    const time = now.toLocaleTimeString([],{
+
+        hour:"2-digit",
+
+        minute:"2-digit"
+
+    });
+
+    const activity = document.createElement("div");
+
+    activity.className = "activity-item";
+
+    activity.innerHTML = `
+
+        <div class="activity-time">
+
+            ${time}
+
+        </div>
+
+        <div class="activity-title">
+
+            ${icon} ${title}
+
+        </div>
+
+        <div class="activity-message">
+
+            ${message}
+
+        </div>
+
+    `;
+
+    activityFeed.prepend(activity);
+
+}
 /*
 =========================================================
                 Initialize

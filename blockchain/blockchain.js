@@ -81,42 +81,42 @@ class Blockchain {
     ===========================================
     */
 
-    minePendingTransactions(minerAddress) {
+   minePendingTransactions(minerAddress) {
 
-        const block = new Block(
+    // Reward transaction first
+    const rewardTransaction = new Transaction(
+        null,
+        minerAddress,
+        this.miningReward
+    );
 
-            this.chain.length,
+    rewardTransaction.confirm();
 
-            Date.now(),
+    // Confirm all pending transactions
+    this.pendingTransactions.forEach(tx => {
+        tx.confirm();
+    });
 
-            this.pendingTransactions,
+    // Include reward in the block being mined
+    const transactions = [
+        ...this.pendingTransactions,
+        rewardTransaction
+    ];
 
-            this.getLatestBlock().hash
+    const block = new Block(
+        this.chain.length,
+        Date.now(),
+        transactions,
+        this.getLatestBlock().hash
+    );
 
-        );
+    block.mineBlock(this.difficulty);
 
-        block.mineBlock(this.difficulty);
+    this.chain.push(block);
 
-        this.chain.push(block);
-
-        // Reward Transaction
-
-        this.pendingTransactions = [
-
-            new Transaction(
-
-                null,
-
-                minerAddress,
-
-                this.miningReward
-
-            )
-
-        ];
-
-    }
-
+    // Clear pending transactions
+    this.pendingTransactions = [];
+}
     /*
     ===========================================
             Wallet Balance

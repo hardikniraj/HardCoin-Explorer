@@ -206,14 +206,13 @@ body{
 ==========================================================*/
 
 .hero{
-
-    min-height:90vh;
-
+    min-height:85vh;
     display:flex;
-
     align-items:center;
-
+    padding:120px 0 60px;
 }
+
+
 
 .hero h1{
 
@@ -257,7 +256,7 @@ body{
 
     50%{
 
-        transform:translateY(-18px);
+        transform:translateY(-20px);
 
     }
 
@@ -464,41 +463,7 @@ label{
    Wallet Cards
 ==========================================================*/
 
-.wallet-card{
 
-    background:rgba(255,255,255,.08);
-
-    backdrop-filter:blur(15px);
-
-    border-radius:18px;
-
-    padding:25px;
-
-    transition:.35s;
-
-    margin-bottom:25px;
-
-    border:1px solid rgba(255,255,255,.08);
-
-}
-
-.wallet-card:hover{
-
-    transform:translateY(-8px);
-
-    box-shadow:0 20px 40px rgba(34,197,94,.20);
-
-}
-
-.wallet-balance{
-
-    font-size:28px;
-
-    font-weight:700;
-
-    color:#22C55E;
-
-}
 
 /* ==========================================================
    Progress Bar
@@ -665,6 +630,8 @@ section{
         #4F46E5
     );
 
+    background-clip:text;
+
     -webkit-background-clip:text;
 
     -webkit-text-fill-color:transparent;
@@ -700,58 +667,6 @@ section{
 .dashboard-card h2{
 
     text-shadow:0 0 20px rgba(6,182,212,.35);
-
-}
-
-/* ==========================================================
-   Wallet Animation
-==========================================================*/
-
-.wallet-card{
-
-    position:relative;
-
-    overflow:hidden;
-
-}
-
-.wallet-card::before{
-
-    content:"";
-
-    position:absolute;
-
-    width:220px;
-
-    height:220px;
-
-    background:rgba(255,255,255,.08);
-
-    border-radius:50%;
-
-    top:-120px;
-
-    right:-120px;
-
-    transition:.5s;
-
-}
-
-.wallet-card:hover::before{
-
-    transform:scale(1.6);
-
-}
-
-.wallet-card h4{
-
-    font-weight:700;
-
-}
-
-.wallet-card small{
-
-    color:#CBD5E1;
 
 }
 
@@ -1045,6 +960,8 @@ footer p{
         #4F46E5
     );
 
+    background-clip:text;
+
     -webkit-background-clip:text;
 
     -webkit-text-fill-color:transparent;
@@ -1062,3 +979,660 @@ footer p{
     border-radius:24px;
 
 }
+/* ==========================================================
+                    PROFESSIONAL WALLET CARD
+========================================================== */
+
+.wallet-card{
+
+    background: rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(18px);
+
+    border:1px solid rgba(255,255,255,0.15);
+
+    border-radius:20px;
+
+    padding:25px;
+
+    transition:0.35s ease;
+
+    color:white;
+
+    overflow:hidden;
+
+    position:relative;
+
+}
+
+.wallet-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 15px 40px rgba(0,255,255,.25);
+
+    border-color:#00d9ff;
+
+}
+
+.wallet-card h4{
+
+    font-weight:700;
+
+    margin-bottom:6px;
+
+}
+
+.wallet-balance{
+
+    font-size:2.4rem;
+
+    font-weight:800;
+
+    color:#22C55E;
+
+    text-shadow:0 0 15px rgba(34,197,94,.35);
+
+    margin:8px 0 18px;
+
+}
+
+
+
+.wallet-address{
+
+    background:#0d1117;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:12px;
+
+    padding:12px;
+
+    color:#58a6ff;
+
+    font-family:monospace;
+
+    font-size:13px;
+
+    overflow-x:auto;
+
+    white-space:nowrap;
+
+    margin-bottom:18px;
+
+}
+
+.wallet-card small{
+
+    color:#bdbdbd;
+
+    font-weight:600;
+
+}
+
+.wallet-card hr{
+
+    border-color:rgba(255,255,255,.15);
+
+    margin:18px 0;
+
+}
+
+.wallet-card .btn{
+
+    border-radius:12px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.wallet-card .btn:hover{
+
+    transform:translateY(-2px);
+
+}
+
+
+.wallet-card .btn-primary{
+
+    background:#2563eb;
+
+    border:none;
+
+}
+
+.wallet-card .btn-warning{
+
+    color:#fff;
+
+}
+
+.wallet-card .badge{
+
+    font-size:.8rem;
+
+    padding:7px 12px;
+
+}
+
+.wallet-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:180px;
+
+    height:180px;
+
+    background:rgba(0,217,255,.08);
+
+    border-radius:50%;
+
+    top:-80px;
+
+    right:-80px;
+
+}
+/* =======================================================
+                    BLOCKCHAIN EXPLORER
+======================================================= */
+
+.explorer-card{
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(16px);
+
+    border-radius:20px;
+
+    padding:25px;
+
+    border:1px solid rgba(255,255,255,.12);
+
+    transition:.35s;
+
+    color:white;
+
+}
+
+.explorer-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 18px 40px rgba(0,217,255,.25);
+
+    border-color:#00d9ff;
+
+}
+
+.hash-box{
+
+    margin-top:8px;
+
+    margin-bottom:15px;
+
+    background:#0d1117;
+
+    color:#58a6ff;
+
+    font-family:monospace;
+
+    font-size:13px;
+
+    padding:12px;
+
+    border-radius:10px;
+
+    word-break:break-all;
+
+    border:1px solid rgba(255,255,255,.08);
+
+}
+/* =======================================================
+                    ACTIVITY FEED
+======================================================= */
+
+.activity-feed{
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(18px);
+
+    border-radius:20px;
+
+    padding:20px;
+
+    max-height:700px;
+
+    overflow-y:auto;
+
+    border:1px solid rgba(255,255,255,.12);
+
+}
+
+.activity-item{
+
+    padding:15px;
+
+    margin-bottom:15px;
+
+    border-radius:12px;
+
+    background:rgba(255,255,255,.05);
+
+    border-left:4px solid #00d9ff;
+
+}
+
+.activity-time{
+
+    color:#8ec5ff;
+
+    font-size:12px;
+
+}
+
+.activity-title{
+
+    font-weight:700;
+
+    margin-top:6px;
+
+}
+
+.activity-message{
+
+    color:#d6d6d6;
+
+    font-size:14px;
+
+    margin-top:5px;
+
+}
+/*=========================================================
+                    DASHBOARD CARDS
+=========================================================*/
+
+.dashboard-card{
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(18px);
+
+    border-radius:20px;
+
+    padding:30px;
+
+    text-align:center;
+
+    border:1px solid rgba(255,255,255,.12);
+
+    transition:.35s;
+
+    color:white;
+
+}
+
+.dashboard-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 15px 40px rgba(0,217,255,.25);
+
+    border-color:#00d9ff;
+
+}
+
+.dashboard-icon{
+
+    width:70px;
+
+    height:70px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:28px;
+
+    color:white;
+
+    margin-bottom:18px;
+
+}
+
+.dashboard-title{
+
+    letter-spacing:2px;
+
+    font-size:12px;
+
+    color:#bdbdbd;
+
+    font-weight:700;
+
+}
+
+.dashboard-card h1{
+
+    margin-top:15px;
+
+    font-size:42px;
+
+    font-weight:700;
+
+}
+/*====================================================
+                    HERO SECTION
+====================================================*/
+
+.hero{
+
+    min-height:100vh;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    position:relative;
+
+    overflow:hidden;
+
+    padding-top:90px;
+
+    padding-bottom:120px;
+
+}
+
+
+
+.hero-title{
+
+    font-size:4rem;
+
+    line-height:1.1;
+
+    color:#ffffff;
+
+}
+
+.hero-description{
+
+    font-size:1.15rem;
+
+    color:#cbd5e1;
+
+    max-width:560px;
+
+    line-height:1.8;
+
+}
+
+.hero-image{
+
+    width:100%;
+
+    max-width:600px;
+
+    animation:float 5s ease-in-out infinite;
+
+    filter:drop-shadow(0 35px 70px rgba(0,217,255,.35));
+
+    transition:.4s;
+
+}
+
+.hero-image:hover{
+
+    transform:scale(1.05);
+
+}
+
+.hero-stat{
+
+    background:rgba(255,255,255,.05);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:20px;
+
+    padding:30px;
+
+    text-align:center;
+
+    transition:.35s;
+
+    height:100%;
+
+}
+
+.hero-stat:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 20px 50px rgba(0,217,255,.18);
+
+}
+
+.hero-stat h2{
+
+    color:#00d9ff;
+
+    font-size:2.4rem;
+
+    font-weight:700;
+
+    margin:15px 0 5px;
+
+}
+
+.hero-stat p{
+
+    color:#94a3b8;
+
+    letter-spacing:2px;
+
+    font-size:.8rem;
+
+    margin:0;
+
+}
+.hero-stat-icon{
+
+    width:60px;
+
+    height:60px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:28px;
+
+    background:linear-gradient(135deg,#2563eb,#06b6d4);
+
+    box-shadow:0 10px 25px rgba(0,217,255,.35);
+
+}
+
+@keyframes float{
+
+    0%{
+
+        transform:translateY(0px);
+
+    }
+
+    50%{
+
+        transform:translateY(-15px);
+
+    }
+
+    100%{
+
+        transform:translateY(0px);
+
+    }
+
+}
+/*=========================
+      TRANSACTION PANEL
+=========================*/
+
+#transaction .glass-card{
+
+    border-radius:24px;
+
+}
+
+#transaction h2{
+
+    font-weight:700;
+
+    margin-bottom:10px;
+
+}
+
+#transaction label{
+
+    margin-bottom:10px;
+
+    color:#cbd5e1;
+
+}
+
+#transaction .form-control,
+#transaction .form-select{
+
+    height:58px;
+
+    border-radius:14px;
+
+    font-size:16px;
+
+}
+
+#transaction .btn{
+
+    width:100%;
+
+    padding:14px;
+
+    font-size:18px;
+
+    border-radius:14px;
+
+    font-weight:700;
+
+}
+/*=============================
+     BLOCKCHAIN EXPLORER
+=============================*/
+
+.explorer-card{
+
+    transition:.35s;
+
+    border-radius:22px;
+
+}
+
+.explorer-card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 20px 60px rgba(0,255,180,.15);
+
+}
+
+.hash-box{
+
+    font-size:12px;
+
+    overflow-x:auto;
+
+    white-space:nowrap;
+
+    border-radius:10px;
+
+}
+
+.activity-feed{
+
+    max-height:850px;
+
+    overflow-y:auto;
+
+}
+.footer{
+
+    margin-top:120px;
+
+    padding:70px 0;
+
+    text-align:center;
+
+    background:#0a0a0a;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+}
+
+.footer h3{
+
+    color:#00E5FF;
+
+    font-weight:700;
+
+}
+
+.footer-links{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+    color:#9ca3af;
+
+    margin:20px 0;
+
+}
+.dashboard-card{
+
+    transition:.35s;
+
+}
+
+.dashboard-card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 20px 40px rgba(0,217,255,.18);
+
+}
+

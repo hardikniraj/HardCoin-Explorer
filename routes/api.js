@@ -450,6 +450,61 @@ router.get("/validate", (req, res) => {
 });
 /*
 =====================================================
+                DEVELOPER FAUCET
+=====================================================
+*/
+console.log("✅ Faucet route loaded");
+router.post("/faucet", (req, res) => {
+
+    const { address, amount } = req.body;
+
+    const wallet = wallets.find(
+
+        w => w.address === address
+
+    );
+
+    if (!wallet) {
+
+        return res.status(404).json({
+
+            success: false,
+
+            message: "Wallet not found."
+
+        });
+
+    }
+
+    const transaction = new Transaction(
+
+        null,
+
+        wallet.address,
+
+        Number(amount)
+
+    );
+
+    transaction.confirm();
+
+    hardCoin.pendingTransactions.push(transaction);
+
+    hardCoin.minePendingTransactions(wallet.address);
+
+    res.json({
+
+        success: true,
+
+        message: `${amount} HC added successfully.`,
+
+        wallet: wallet.getDetails()
+
+    });
+
+});
+/*
+=====================================================
                 STATISTICS
 =====================================================
 */
@@ -619,6 +674,8 @@ router.get("/", (req, res) => {
             "/validate",
 
             "/health",
+
+            "/faucet",
 
             "/test"
 

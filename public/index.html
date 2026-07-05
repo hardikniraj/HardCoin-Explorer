@@ -39,238 +39,310 @@
 
     <!-- Navbar -->
 
-    <nav class="navbar navbar-expand-lg navbar-dark py-3">
+   <nav class="navbar navbar-expand-lg navbar-dark fixed-top glass-navbar">
 
-        <div class="container">
+    <div class="container">
 
-            <a class="navbar-brand fw-bold fs-3" href="#">
+        <a class="navbar-brand fw-bold fs-3" href="#">
 
-                🪙 HardCoin Explorer
+            🪙 HardCoin Explorer
 
-            </a>
+        </a>
 
-            <button class="navbar-toggler"
-                data-bs-toggle="collapse"
-                data-bs-target="#menu">
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#menu">
 
-                <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>
 
-            </button>
+        </button>
 
-            <div class="collapse navbar-collapse"
-                id="menu">
+        <div
+            class="collapse navbar-collapse"
+            id="menu">
 
-                <ul class="navbar-nav ms-auto">
+            <ul class="navbar-nav ms-auto align-items-lg-center">
 
-                    <li class="nav-item">
+                <li class="nav-item">
 
-                        <a class="nav-link active"
-                            href="#dashboard">
+                    <a class="nav-link active" href="#dashboard">
 
-                            Dashboard
+                        Dashboard
 
-                        </a>
+                    </a>
 
-                    </li>
+                </li>
 
-                    <li class="nav-item">
+                <li class="nav-item">
 
-                        <a class="nav-link"
-                            href="#wallets">
+                    <a class="nav-link" href="#wallets">
 
-                            Wallets
+                        Wallets
 
-                        </a>
+                    </a>
 
-                    </li>
+                </li>
 
-                    <li class="nav-item">
+                <li class="nav-item">
 
-                        <a class="nav-link"
-                            href="#transaction">
+                    <a class="nav-link" href="#transaction">
 
-                            Transactions
+                        Transactions
 
-                        </a>
+                    </a>
 
-                    </li>
+                </li>
 
-                    <li class="nav-item">
+                <li class="nav-item">
 
-                        <a class="nav-link"
-                            href="#mine">
+                    <a class="nav-link" href="#mine">
 
-                            Mining
+                        Mining
 
-                        </a>
+                    </a>
 
-                    </li>
+                </li>
 
-                    <li class="nav-item">
+                <li class="nav-item">
 
-                        <a class="nav-link"
-                            href="#explorer">
+                    <a class="nav-link" href="#explorer">
 
-                            Explorer
+                        Explorer
 
-                        </a>
+                    </a>
 
-                    </li>
+                </li>
 
-                </ul>
+                <li class="nav-item ms-lg-3">
 
-            </div>
+                    <span class="badge bg-success px-3 py-2">
+
+                        🟢 Blockchain Online
+
+                    </span>
+
+                </li>
+
+            </ul>
 
         </div>
 
-    </nav>
+    </div>
+
+</nav>
 
     <!-- Hero Section -->
+<!-- ================= HERO SECTION ================= -->
 
-    <section class="hero">
+<section class="hero py-5">
 
-        <div class="container">
+    <div class="container">
 
-            <div class="row align-items-center">
+        <div class="row align-items-center">
 
-                <div class="col-lg-7"
-                    data-aos="fade-right">
+            <!-- Left -->
 
-                    <h1>
+           <div class="col-lg-6" data-aos="fade-right">
 
-                        Cryptocurrency <br>
+                <span class="badge bg-primary px-3 py-2 mb-3">
 
-                        Blockchain Simulator
+                    🚀 Blockchain Simulator v1.0
 
-                    </h1>
+                </span>
 
-                    <p>
+                <h1 class="display-3 fw-bold hero-title">
 
-                        HardCoin Explorer is a complete blockchain
-                        simulation demonstrating SHA-256 hashing,
-                        Proof of Work, Mining, Wallets,
-                        Transactions and Blockchain Validation.
+                    HardCoin <br>
 
-                    </p>
+                    Explorer
 
-                    <div class="mt-4">
+                </h1>
 
-                        <button
-                            class="btn btn-primary btn-lg me-3">
+                <h4 class="text-info mb-4">
 
-                            Launch Dashboard
+                    Professional Blockchain Simulator
 
-                        </button>
+                </h4>
 
-                        <button
-                            class="btn btn-outline-light btn-lg">
+                <p class="hero-description">
 
-                            GitHub
+                    Learn and visualize how blockchain works through a complete
+                    interactive simulator featuring Proof of Work (PoW), SHA-256
+                    hashing, cryptocurrency wallets, mining, transactions,
+                    blockchain validation, and a real-time blockchain explorer.
 
-                        </button>
+                </p>
 
-                    </div>
+                <div class="d-flex flex-wrap gap-3 mt-4">
+
+                    <a href="#dashboard"
+                        class="btn btn-primary btn-lg px-4">
+
+                        🚀 Launch Dashboard
+
+                    </a>
+
+                    <a href="#mine"
+                        class="btn btn-outline-light btn-lg px-4">
+
+                        ⛏ Start Mining
+
+                    </a>
 
                 </div>
 
-                <div class="col-lg-5 text-center"
-                    data-aos="zoom-in">
+            </div>
+            <!-- Right -->
 
-                    <img
-                        src="https://cdn-icons-png.flaticon.com/512/6001/6001366.png"
-                        class="hero-image">
+          <div class="col-lg-6 text-center mt-5 mt-lg-0"
+                data-aos="zoom-in">
 
-                </div>
+                <img
+    src="images/blockchain-3d.png"
+    class="img-fluid hero-image">
+
 
             </div>
 
         </div>
 
-    </section>
+    </div>
 
+</section>
     <!-- Dashboard -->
 
-    <section
-        id="dashboard"
-        class="container my-5">
+  <section
+    id="dashboard"
+    class="container"
+    style="padding-top:140px;">
 
-        <div class="row g-4">
+    <div class="row g-4">
 
-            <div class="col-md-3">
+        <div class="col-lg-3 col-md-6">
 
-                <div class="dashboard-card">
+          <div class="dashboard-card">
 
-                    <i class="bi bi-box"></i>
+    <div class="dashboard-top">
 
-                    <h5>Total Blocks</h5>
+        <div class="dashboard-icon bg-primary">
 
-                    <h2 id="blockCount">
+            <i class="bi bi-box-fill"></i>
 
-                        0
+        </div>
 
-                    </h2>
 
-                </div>
+    </div>
 
-            </div>
+    <small class="dashboard-title">
 
-            <div class="col-md-3">
+        TOTAL BLOCKS
 
-                <div class="dashboard-card">
+    </small>
+
+    <h1 id="blockCount">
+
+        0
+
+    </h1>
+
+    <p class="dashboard-footer">
+
+        Blockchain Height
+
+    </p>
+
+</div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="dashboard-card">
+
+                <div class="dashboard-icon bg-success">
 
                     <i class="bi bi-wallet2"></i>
 
-                    <h5>Wallets</h5>
-
-                    <h2 id="walletCount">
-
-                        0
-
-                    </h2>
-
                 </div>
 
-            </div>
+                <small class="dashboard-title">
 
-            <div class="col-md-3">
+                    ACTIVE WALLETS
 
-                <div class="dashboard-card">
+                </small>
 
-                    <i class="bi bi-arrow-left-right"></i>
+               <h1 id="walletCount">
+    0
+</h1>
 
-                    <h5>Pending Transactions</h5>
-
-                    <h2 id="pendingCount">
-
-                        0
-
-                    </h2>
-
-                </div>
-
-            </div>
-
-            <div class="col-md-3">
-
-                <div class="dashboard-card">
-
-                    <i class="bi bi-cpu"></i>
-
-                    <h5>Difficulty</h5>
-
-                    <h2>
-
-                        2
-
-                    </h2>
-
-                </div>
+<p class="dashboard-footer">
+    Active Wallets
+</p>
 
             </div>
 
         </div>
 
-    </section>
+        <div class="col-lg-3 col-md-6">
+
+            <div class="dashboard-card">
+
+                <div class="dashboard-icon bg-warning">
+
+                    <i class="bi bi-arrow-left-right"></i>
+
+                </div>
+
+                <small class="dashboard-title">
+
+                    PENDING TX
+
+                </small>
+<h1 id="pendingCount">
+    0
+</h1>
+
+<p class="dashboard-footer">
+    Waiting for Mining
+</p>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="dashboard-card">
+
+                <div class="dashboard-icon bg-danger">
+
+                    <i class="bi bi-cpu-fill"></i>
+
+                </div>
+
+                <small class="dashboard-title">
+
+                    DIFFICULTY
+
+                </small>
+
+        <h1 id="difficultyCount">
+    3
+</h1>
+
+<p class="dashboard-footer">
+    SHA-256 Difficulty
+</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
 
     <!-- Wallet Section -->
 
@@ -317,36 +389,38 @@
 
             <h2>
 
-                💸 Create Transaction
+                💸 Create Secure Transaction
 
             </h2>
 
-            <div class="row mt-4">
+           <div class="row g-4 mt-3">
 
                 <div class="col-md-4">
 
-                    <label>
+                   <label class="fw-bold">
 
-                        Sender
+    👤 From Wallet
 
-                    </label>
-
+</label>
                     <select
                         id="fromWallet"
                         class="form-select">
 
                     </select>
+                    <div id="senderBalance" class="mt-3 text-info fw-bold">
 
+    Available Balance : 0 HC
+
+</div>
                 </div>
 
                 <div class="col-md-4">
 
-                    <label>
+                   <label class="fw-bold">
 
-                        Receiver
+    👤 To Wallet
 
-                    </label>
-
+</label>
                     <select
                         id="toWallet"
                         class="form-select">
@@ -357,17 +431,17 @@
 
                 <div class="col-md-4">
 
-                    <label>
+                   <label class="fw-bold">
 
-                        Amount
+    💰 Amount (HC)
 
-                    </label>
+</label>
 
                     <input
                         type="number"
                         id="amount"
                         class="form-control"
-                        placeholder="Enter Amount">
+                        placeholder="Enter HardCoin Amount">
 
                 </div>
 
@@ -379,7 +453,7 @@
                     id="sendBtn"
                     class="btn btn-primary btn-lg">
 
-                    Send Coins
+                 🚀 Send Transaction
 
                 </button>
 
@@ -396,19 +470,58 @@
 
         <div class="glass-card text-center p-5">
 
-            <h2 class="section-title mb-3">
+           <h2 class="section-title mb-3">
 
-                ⛏ Mine New Block
+    ⛏ HardCoin Miner
 
-            </h2>
+</h2>
 
-            <p class="text-light">
+           <p class="text-secondary">
 
-                Mine all pending transactions and earn
-                <strong>100 HardCoins</strong>
+    Mine all pending transactions using
+    <strong>Proof of Work (SHA-256)</strong>
+    and earn a mining reward.
 
-            </p>
+</p>
+    <div class="row text-center mb-4">
 
+    <div class="col-md-4">
+
+        <h6 class="text-secondary">
+            Network
+        </h6>
+
+        <h5 class="text-success">
+            🟢 Online
+        </h5>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <h6 class="text-secondary">
+            Difficulty
+        </h6>
+
+        <h5 id="mineDifficulty">
+            3
+        </h5>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <h6 class="text-secondary">
+            Reward
+        </h6>
+
+        <h5 class="text-warning">
+            100 HC
+        </h5>
+
+    </div>
+
+</div>
             <div class="progress my-4" style="height:28px;">
 
                 <div id="mineProgress"
@@ -426,7 +539,7 @@
                 class="btn btn-warning btn-lg"
                 id="mineBtn">
 
-                ⛏ Start Mining
+               🚀 Start Proof of Work
 
             </button>
 
@@ -439,27 +552,113 @@
         </div>
 
     </section>
+    <section class="container my-5">
 
-    <!-- ========================================= -->
-    <!-- Blockchain Explorer -->
-    <!-- ========================================= -->
+    <div class="glass-card p-4">
 
-    <section id="explorer" class="container my-5">
+        <div class="row text-center">
 
-        <h2 class="section-title mb-4">
+            <div class="col-md-3">
 
-            📦 Blockchain Explorer
+                <h6 class="text-secondary">
+                    Network
+                </h6>
 
-        </h2>
+                <h4 class="text-success">
+                    🟢 Online
+                </h4>
 
-        <div
-            id="blockchainExplorer"
-            class="row gy-4">
+            </div>
+
+            <div class="col-md-3">
+
+                <h6 class="text-secondary">
+                    Consensus
+                </h6>
+
+                <h4>
+                    Proof of Work
+                </h4>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <h6 class="text-secondary">
+                    Algorithm
+                </h6>
+
+                <h4>
+                    SHA-256
+                </h4>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <h6 class="text-secondary">
+                    Reward
+                </h6>
+
+                <h4 class="text-warning">
+                    100 HC
+                </h4>
+
+            </div>
 
         </div>
 
-    </section>
+    </div>
 
+</section>
+    <!-- ========================================= -->
+    <!-- Blockchain Explorer -->
+    <!-- ========================================= -->
+  
+   <section class="container mt-5">
+
+    <div class="row">
+
+        <!-- Blockchain Explorer -->
+
+        <div class="col-lg-8">
+<h2 class="section-title mb-4">
+    🧱 Live Blockchain Explorer
+</h2>
+
+<p class="text-secondary mb-4">
+    Every mined block is permanently stored on the blockchain using SHA-256 hashing and Proof of Work.
+</p>
+    
+            <div class="row" id="blockchainExplorer">
+
+            </div>
+
+        </div>
+
+        <!-- Activity Feed -->
+
+        <div class="col-lg-4">
+
+           <h2 class="section-title mb-4">
+    📜 Network Activity
+</h2>
+
+<p class="text-secondary">
+    Live blockchain events
+</p>
+
+            <div
+                id="activityFeed"
+                class="activity-feed">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
     <!-- ========================================= -->
     <!-- Wallet Balance Chart -->
     <!-- ========================================= -->
@@ -603,21 +802,49 @@
     <!-- Footer -->
     <!-- ========================================= -->
 
-    <footer class="mt-5 py-4 text-center">
+   <footer class="footer mt-5">
+
+    <div class="container">
+
+        <h3>🪙 HardCoin Explorer</h3>
 
         <p>
-
-            © 2026 HardCoin Explorer
-
+            Professional Blockchain Simulator
         </p>
+
+        <div class="footer-links">
+
+            <span>SHA-256</span>
+
+            <span>•</span>
+
+            <span>Proof of Work</span>
+
+            <span>•</span>
+
+            <span>Node.js</span>
+
+            <span>•</span>
+
+            <span>Express</span>
+
+            <span>•</span>
+
+            <span>Bootstrap 5</span>
+
+        </div>
+
+        <hr>
 
         <small>
 
-            Developed using Node.js • Express • Blockchain • SHA-256 • Bootstrap
+            © 2026 HardCoin Explorer • Developed by Hardik
 
         </small>
 
-    </footer>
+    </div>
+
+</footer>
 
     <!-- ========================================= -->
     <!-- Bootstrap JS -->
