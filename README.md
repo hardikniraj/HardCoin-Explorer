@@ -103,26 +103,6 @@ http://localhost:3000
 
 ---
 
-## 📸 Screenshots
-
-### Landing Page
-
-(Add Screenshot Here)
-
-### Dashboard
-
-(Add Screenshot Here)
-
-### Wallet Management
-
-(Add Screenshot Here)
-
-### Blockchain Explorer
-
-(Add Screenshot Here)
-
----
-
 ## 🔮 Future Enhancements
 
 - User Authentication
